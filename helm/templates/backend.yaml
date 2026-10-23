@@ -45,21 +45,45 @@ spec:
             - name: MYSQL_USERNAME
               value: {{ .Values.mysql.user | quote }}
             - name: MYSQL_PASSWORD
-              value: {{ .Values.mysql.rootPassword | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: MYSQL_PASSWORD
             - name: GOOGLE_OAUTH_CLIENT_ID
-              value: {{ .Values.backend.env.GOOGLE_OAUTH_CLIENT_ID | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: GOOGLE_OAUTH_CLIENT_ID
             - name: GOOGLE_OAUTH_CLIENT_SECRET
-              value: {{ .Values.backend.env.GOOGLE_OAUTH_CLIENT_SECRET | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: GOOGLE_OAUTH_CLIENT_SECRET
             - name: CLOUDINARY_CLOUD_NAME
-              value: {{ .Values.backend.env.CLOUDINARY_CLOUD_NAME | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: CLOUDINARY_CLOUD_NAME
             - name: CLOUDINARY_API_KEY
-              value: {{ .Values.backend.env.CLOUDINARY_API_KEY | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: CLOUDINARY_API_KEY
             - name: CLOUDINARY_API_SECRET
-              value: {{ .Values.backend.env.CLOUDINARY_API_SECRET | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: CLOUDINARY_API_SECRET
             - name: STRIPE_SECRET_KEY
-              value: {{ .Values.backend.env.STRIPE_SECRET_KEY | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: STRIPE_SECRET_KEY
             - name: STRIPE_WEBHOOK_SECRET
-              value: {{ .Values.backend.env.STRIPE_WEBHOOK_SECRET | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: STRIPE_WEBHOOK_SECRET
             - name: STRIPE_SUCCESS_URL
               value: {{ .Values.backend.env.STRIPE_SUCCESS_URL | quote }}
             - name: STRIPE_CANCEL_URL

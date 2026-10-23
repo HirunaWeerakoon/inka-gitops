@@ -52,7 +52,10 @@ spec:
           imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: {{ .Values.mysql.rootPassword | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: inka-secrets
+                  key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
               value: {{ .Values.mysql.database | quote }}
           ports:
