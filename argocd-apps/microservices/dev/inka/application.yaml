@@ -1,0 +1,30 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: inka-clothing-store
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/HirunaWeerakoon/inka-gitops
+      targetRevision: main
+      path: charts/microservices/inka
+      helm:
+        releaseName: inka-clothing-store
+        valueFiles:
+          - ../dev/inka/values.yaml
+    - repoURL: https://github.com/HirunaWeerakoon/inka-gitops
+      targetRevision: main
+      path: charts/microservices/dev/inka/resources
+      directory:
+        recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: inka
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 3
