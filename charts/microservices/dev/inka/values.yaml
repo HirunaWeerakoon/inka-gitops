@@ -24,7 +24,7 @@ backend:
   replicaCount: 1
   image:
     repository: hirunaweerakoon/inka-backend
-    tag: 2391c1ad1f71ad8ae1702ab7d1e84b1adda88953
+    tag: 59f15b9743cce3507b396263b0392efd97eba046
     pullPolicy: IfNotPresent # Uses local image imported via k3d
   service:
     type: ClusterIP
@@ -46,7 +46,7 @@ frontend:
   replicaCount: 1
   image:
     repository: hirunaweerakoon/inka-frontend
-    tag: 2391c1ad1f71ad8ae1702ab7d1e84b1adda88953
+    tag: 59f15b9743cce3507b396263b0392efd97eba046
     pullPolicy: IfNotPresent # Uses local image imported via k3d
   service:
     type: ClusterIP
