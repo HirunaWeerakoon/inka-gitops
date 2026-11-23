@@ -1,4 +1,4 @@
-﻿# ============================================================
+# ============================================================
 # Backend: Service and Deployment
 # ============================================================
 apiVersion: v1
@@ -99,10 +99,14 @@ spec:
               path: /api/products
               port: 8080
             initialDelaySeconds: 40
-            periodSeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 10
+            failureThreshold: 5
           livenessProbe:
             httpGet:
               path: /api/products
               port: 8080
             initialDelaySeconds: 60
             periodSeconds: 20
+            timeoutSeconds: 10
+            failureThreshold: 5
